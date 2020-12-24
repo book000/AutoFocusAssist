@@ -24,14 +24,14 @@ class AutoFocusAssist(discord.Client):
         if userid != member.id:
             return
 
-        if after.self_stream:
-            print("Start GoLive")
-            subprocess.call(
-                ["python3", "wnfun/script_python/WnfDump.py", "-w", "WNF_SHEL_QUIET_MOMENT_SHELL_MODE_CHANGED", "1"])
-        else:
+        if not after.self_stream or after.channel is None:
             print("Stop GoLive")
             subprocess.call(
                 ["python3", "wnfun/script_python/WnfDump.py", "-w", "WNF_SHEL_QUIET_MOMENT_SHELL_MODE_CHANGED", "0"])
+        else:
+            print("Start GoLive")
+            subprocess.call(
+                ["python3", "wnfun/script_python/WnfDump.py", "-w", "WNF_SHEL_QUIET_MOMENT_SHELL_MODE_CHANGED", "1"])
 
 
 client = AutoFocusAssist()
