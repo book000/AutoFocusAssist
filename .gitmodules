@@ -1,0 +1,3 @@
+[submodule "wnfun"]
+	path = wnfun
+	url = https://github.com/ionescu007/wnfun
